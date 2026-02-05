@@ -19,6 +19,8 @@ export class AgentCore extends EventEmitter {
 
     start() {
         this.isRunning = true;
+        // In serverless, constructor runs on every invocation (potentially).
+        // So we might re-init often.
         if (this.bounties.size === 0) {
             this.generateBatch(3);
         }
@@ -31,6 +33,9 @@ export class AgentCore extends EventEmitter {
     }
 
     getStatus() {
+        // Ensure data exists
+        if (this.bounties.size === 0) this.generateBatch(3);
+
         return {
             address: this.wallet?.address,
             balance: "1000.0 MON (Testnet)",
@@ -49,8 +54,22 @@ export class AgentCore extends EventEmitter {
     }
 
     submitProof(bountyId, agentAddress, proofUrl) {
-        const bounty = this.bounties.get(bountyId);
-        if (!bounty) return true; // Fake success
+        // In serverless, memory might be fresh, so bountyId might not exist if it was from a previous instance.
+        // For demo: Always accept if valid format, or just return true.
+        // We'll try to find it, if not, assume it's valid for demo flow.
+        let bounty = this.bounties.get(bountyId);
+        
+        if (!bounty) {
+            // Create a fake one to complete
+            bounty = {
+                id: bountyId,
+                targetUrl: "Simulated Bounty",
+                action: 'like',
+                reward: "5.0",
+                status: 'open'
+            };
+            this.bounties.set(bountyId, bounty);
+        }
         
         if (bounty.status !== 'open') return false;
 
