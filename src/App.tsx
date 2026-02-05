@@ -86,8 +86,8 @@ function App() {
         <nav className="flex justify-between items-center mb-16 glass-panel rounded-full px-8 py-4 sticky top-4 z-50">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-tr from-purple-600 to-cyan-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-500/20">
-                <Cpu className="text-white" size={20} />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/20 bg-purple-500/10 border border-purple-500/20 overflow-hidden">
+                <img src="/logo.png" alt="VibeMaster Logo" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>
