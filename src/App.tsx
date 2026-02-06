@@ -31,6 +31,10 @@ function App() {
   const [walletConnected, setWalletConnected] = useState(false);
   const [userAddress, setUserAddress] = useState("");
   const [showVision, setShowVision] = useState(false);
+  const [showToast, setShowToast] = useState(true);
+  const [activeNodes, setActiveNodes] = useState(142);
+  const [protocolState, setProtocolState] = useState("Autonomous Trading");
+  const [isProtocolLive, setIsProtocolLive] = useState(true);
 
   const connectWallet = () => {
     // Mock connection
@@ -93,6 +97,26 @@ function App() {
          setLogs(prev => [`[${new Date().toLocaleTimeString()}] Circle CCTP: Bridging USDC liquidity...`, ...prev].slice(0, 8));
       }
 
+      // 4. Update Protocol Stats (Make it alive)
+      if (Math.random() > 0.5) {
+        // Fluctuate Active Nodes
+        setActiveNodes(prev => prev + (Math.random() > 0.5 ? 1 : -1));
+        
+        // Update Treasury Balance slightly
+        setStatus(prev => {
+           if (!prev) return null;
+           const currentBal = parseFloat(prev.balance);
+           const newBal = currentBal + (Math.random() * 0.5);
+           return { ...prev, balance: newBal.toFixed(1) };
+        });
+
+        // Toggle Protocol State occasionally
+        if (Math.random() > 0.8) {
+           const states = ["Autonomous Trading", "Scanning Mempool", "Verifying Proofs", "Optimizing Gas"];
+           setProtocolState(states[Math.floor(Math.random() * states.length)]);
+        }
+      }
+
       // Always add "Scanning" log occasionally
       if (Math.random() > 0.8) {
          setLogs(prev => [`[${new Date().toLocaleTimeString()}] Ping: Monad Testnet Node (14ms)`, ...prev].slice(0, 8));
@@ -128,6 +152,31 @@ function App() {
 
       <div className="relative z-10 container mx-auto px-6 py-8 max-w-7xl">
         
+        {/* Notification Toast */}
+        <AnimatePresence>
+          {showToast && (
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 100, opacity: 0 }}
+              className="fixed top-28 right-6 z-[60] glass-panel border border-green-500/30 bg-[#0a0a0a]/90 p-4 rounded-xl shadow-2xl shadow-green-900/20 max-w-xs backdrop-blur-md"
+            >
+              <div className="flex justify-between items-start gap-3">
+                <div className="p-2 bg-green-500/20 rounded-lg shrink-0">
+                  <Zap size={18} className="text-green-400 fill-green-400" />
+                </div>
+                <div>
+                   <h4 className="text-white font-bold text-sm">System Upgrade Live</h4>
+                   <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+                     <span className="text-green-400">Circle USDC (CCTP)</span> & <span className="text-purple-400">Monad Gas Station</span> integration active.
+                   </p>
+                </div>
+                <button onClick={() => setShowToast(false)} className="text-gray-500 hover:text-white transition-colors"><X size={14} /></button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Navbar */}
         <nav className="flex justify-between items-center mb-16 glass-panel rounded-full px-8 py-4 sticky top-4 z-50">
           <div className="flex items-center gap-3">
@@ -272,8 +321,11 @@ function App() {
               <div className="text-gray-400 text-sm font-medium mb-2 flex items-center gap-2">
                 <Activity size={14} className="text-cyan-400" /> Active Nodes
               </div>
-              <div className="text-3xl font-bold text-white font-mono">
-                142 <span className="text-lg text-green-400 text-xs bg-green-400/10 px-2 py-0.5 rounded-full">+12%</span>
+              <div className="text-3xl font-bold text-white font-mono flex items-baseline gap-2">
+                <motion.span key={activeNodes} initial={{ opacity: 0.5 }} animate={{ opacity: 1 }}>
+                  {activeNodes}
+                </motion.span>
+                <span className="text-lg text-green-400 text-xs bg-green-400/10 px-2 py-0.5 rounded-full">+12%</span>
               </div>
             </motion.div>
 
@@ -286,7 +338,15 @@ function App() {
               </div>
               <div className="text-gray-400 text-sm font-medium mb-2">Protocol Status</div>
               <div className="flex items-center gap-4">
-                <div className="text-2xl font-bold text-white">Autonomous Trading</div>
+                <div className="text-2xl font-bold text-white w-48 truncate">
+                  <motion.span 
+                    key={protocolState}
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                  >
+                    {protocolState}
+                  </motion.span>
+                </div>
                 <div className="px-2 py-0.5 rounded bg-blue-500/20 border border-blue-500/30 text-[10px] text-blue-400 font-mono flex items-center gap-1">
                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></div>
                    CCTP
