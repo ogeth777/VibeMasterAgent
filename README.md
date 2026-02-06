@@ -4,6 +4,8 @@
 
 <div align="center">
   <img src="public/logo.jpg" alt="VibeMaster Logo" width="350" style="border-radius: 20px; box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);">
+  
+  <h3>🟣 Built on Monad | 🧠 AI Native | 🌐 Moltiverse</h3>
 </div>
 
 [![Monad](https://img.shields.io/badge/Built_On-Monad-purple?style=for-the-badge&logo=ethereum)](https://monad.xyz)

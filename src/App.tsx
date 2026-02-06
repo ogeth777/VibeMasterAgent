@@ -132,8 +132,18 @@ function App() {
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">VIBEMASTER</h1>
-              <div className="text-[10px] text-cyan-400 font-mono tracking-[0.2em] uppercase">Autonomous DAO</div>
+              <div className="flex items-center gap-3">
+                <h1 className="text-xl font-bold tracking-tight">VIBEMASTER</h1>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-[#200052] border border-[#836EF9]/50 px-3 py-0.5 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_-3px_rgba(131,110,249,0.5)]"
+                >
+                  <img src="/monad.jpg" alt="Monad" className="w-3 h-3 rounded-full" />
+                  <span className="text-[10px] font-bold text-[#836EF9] tracking-wider font-mono">BUILT ON MONAD</span>
+                </motion.div>
+              </div>
+              <div className="text-[10px] text-cyan-400 font-mono tracking-[0.2em] uppercase mt-1">Autonomous DAO</div>
             </div>
           </div>
 
