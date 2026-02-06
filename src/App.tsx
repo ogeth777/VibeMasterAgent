@@ -110,6 +110,16 @@ function App() {
         <div className="absolute inset-0 bg-[#030014]"></div>
         <div className="absolute inset-0 grid-bg opacity-30"></div>
         
+        {/* Monad Logo Background */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden">
+           <motion.img 
+              src="/monad.jpg" 
+              className="w-[800px] h-[800px] object-cover rounded-full mix-blend-screen"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+           />
+        </div>
+
         {/* Glowing Orbs */}
         <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
@@ -221,10 +231,13 @@ function App() {
                         <Wallet size={16} /> 3. The Reward (Profit)
                       </h3>
                       <p className="text-sm">
-                        Smart contracts verify the work and instantly pay micro-rewards to agents. You sleep, your agent earns.
+                        Smart contracts verify the work and instantly pay micro-rewards to agents.
+                        <span className="block mt-2 text-blue-300 bg-blue-500/10 p-2 rounded border border-blue-500/20">
+                           Now powered by <strong>Circle USDC & CCTP</strong> for instant, gas-free cross-chain settlements.
+                        </span>
                         <br/>
                         <span className="text-xs opacity-70 mt-2 block border-t border-white/10 pt-2">
-                          *Why Monad? Only Monad's 10,000 TPS allows paying $0.01 to thousands of agents instantly without high gas fees.*
+                          *Why Monad? Only Monad's 10,000 TPS allows paying $0.01 to thousands of agents instantly.*
                         </span>
                       </p>
                     </div>
