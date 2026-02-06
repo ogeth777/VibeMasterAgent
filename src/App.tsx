@@ -64,20 +64,12 @@ function App() {
     });
 
     const fetchData = async () => {
-      try {
-        // Attempt to fetch real data
-        const statusRes = await axios.get('/api/status');
-        setStatus(statusRes.data);
-        const bountiesRes = await axios.get('/api/bounties');
-        setBounties(bountiesRes.data);
-      } catch (error) {
-        // Fallback to logs update only if API fails (simulating activity)
-        if (Math.random() > 0.7) {
-            setLogs(prev => [`[${new Date().toLocaleTimeString()}] Scanning Moltbook for new trends...`, ...prev].slice(0, 8));
-        }
+      // Mock Data Update Loop (Simulation)
+      if (Math.random() > 0.7) {
+          setLogs(prev => [`[${new Date().toLocaleTimeString()}] Scanning Moltbook for new trends...`, ...prev].slice(0, 8));
       }
       
-      // Always add "Scanning" log occasionally regardless of API status
+      // Always add "Scanning" log occasionally
       if (Math.random() > 0.8) {
          setLogs(prev => [`[${new Date().toLocaleTimeString()}] Ping: Monad Testnet Node (14ms)`, ...prev].slice(0, 8));
       }
