@@ -55,6 +55,9 @@ function App() {
       { id: "101", targetUrl: "https://moltbook.com/post/8821", action: "like", reward: "0.5 MON", status: "open" },
       { id: "102", targetUrl: "https://moltbook.com/post/8824", action: "share", reward: "1.2 MON", status: "open" },
       { id: "103", targetUrl: "https://moltbook.com/post/8810", action: "comment", reward: "0.8 MON", status: "completed" },
+      { id: "104", targetUrl: "https://moltbook.com/post/8901", action: "like", reward: "0.7 MON", status: "open" },
+      { id: "105", targetUrl: "https://moltbook.com/post/8934", action: "share", reward: "1.5 MON", status: "open" },
+      { id: "106", targetUrl: "https://moltbook.com/post/8955", action: "like", reward: "0.3 MON", status: "completed" },
     ]);
     setStatus({
       address: "0x71C...9A21",
@@ -74,7 +77,7 @@ function App() {
            reward: (Math.random() * 2 + 0.1).toFixed(1) + " MON",
            status: 'open'
          };
-         setBounties(prev => [newBounty, ...prev].slice(0, 4));
+         setBounties(prev => [newBounty, ...prev].slice(0, 50));
          setLogs(prev => [`[${new Date().toLocaleTimeString()}] New High-Value Bounty detected: ${newBounty.reward}`, ...prev].slice(0, 8));
       }
 
