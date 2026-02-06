@@ -234,11 +234,11 @@ function App() {
               <div className="text-gray-400 text-sm font-medium mb-2 flex items-center gap-2">
                 <Shield size={14} className="text-purple-400" /> Treasury Balance
               </div>
-              <div className="text-3xl font-bold text-cyan-400 font-mono">
-                {status?.balance || "..."} <span className="text-lg text-white/50">MON</span>
+              <div className="text-3xl font-bold text-[#00f3ff] font-mono drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">
+                {status?.balance || "..."} <span className="text-lg text-[#7000ff] drop-shadow-none">MON</span>
               </div>
-              <div className="text-sm font-bold text-blue-500 font-mono">
-                (Testnet) <span className="text-xs text-purple-400">MON</span>
+              <div className="text-2xl font-bold text-[#00f3ff] font-mono mt-1 drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">
+                (Testnet) <span className="text-sm text-[#7000ff] drop-shadow-none">MON</span>
               </div>
             </motion.div>
 
