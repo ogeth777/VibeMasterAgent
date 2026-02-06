@@ -58,7 +58,7 @@ function App() {
     ]);
     setStatus({
       address: "0x71C...9A21",
-      balance: "420.69",
+      balance: "1000.0",
       activeBounties: 3,
       completedBounties: 12
     });
@@ -112,9 +112,7 @@ function App() {
         <nav className="flex justify-between items-center mb-16 glass-panel rounded-full px-8 py-4 sticky top-4 z-50">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-tr from-purple-600 to-cyan-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-500/20">
-                <Cpu className="text-white" size={20} />
-              </div>
+               <img src="/logo.jpg" alt="VibeMaster" className="w-10 h-10 rounded-lg shadow-lg shadow-purple-500/20" />
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>
             <div>
@@ -236,8 +234,11 @@ function App() {
               <div className="text-gray-400 text-sm font-medium mb-2 flex items-center gap-2">
                 <Shield size={14} className="text-purple-400" /> Treasury Balance
               </div>
-              <div className="text-3xl font-bold gradient-text-glow font-mono">
+              <div className="text-3xl font-bold text-cyan-400 font-mono">
                 {status?.balance || "..."} <span className="text-lg text-white/50">MON</span>
+              </div>
+              <div className="text-sm font-bold text-blue-500 font-mono">
+                (Testnet) <span className="text-xs text-purple-400">MON</span>
               </div>
             </motion.div>
 
