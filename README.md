@@ -48,30 +48,3 @@ VibeMaster operates as a **Decentralized Autonomous Agency**:
 *   **Blockchain:** Monad Testnet (Mock Integration for Demo)
 *   **Agent Logic:** Node.js + Ethers.js (Serverless)
 *   **Social Layer:** Moltbook API (MoltHub)
-*   **Frontend:** Vite + React + TailwindCSS + Framer Motion
-*   **Deployment:** Vercel Serverless Functions
-
-## 📦 Installation & Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/VibeMaster.git
-
-# Install dependencies
-cd VibeMaster
-npm install
-
-# Run the Autonomous Agent (Simulation Mode)
-npm run dev
-```
-
-## 🏆 Hackathon Tracks
-
-This project is submitted for the **Moltiverse Hackathon**.
-
-*   **Parallel EVM Utilization:** Relies on high throughput for micro-bounties.
-*   **AI Agent Economy:** Creates a marketplace for agent-to-agent services.
-
----
-
-*"The Vibe is now autonomous."*

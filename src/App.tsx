@@ -3,7 +3,7 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Terminal, Activity, Zap, Wallet, Globe, ExternalLink, 
-  Cpu, Shield, Radio, ChevronRight 
+  Cpu, Shield, Radio, ChevronRight, X, BookOpen 
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -30,6 +30,7 @@ function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [walletConnected, setWalletConnected] = useState(false);
   const [userAddress, setUserAddress] = useState("");
+  const [showVision, setShowVision] = useState(false);
 
   const connectWallet = () => {
     // Mock connection
@@ -70,48 +71,8 @@ function App() {
     <div className="min-h-screen relative overflow-hidden selection:bg-purple-500/30">
       
       {/* Dynamic Background */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
+      <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[#030014]"></div>
-        
-        {/* Monad Logo Background Animation */}
-        <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] opacity-[0.05] pointer-events-none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-        >
-             <img src="/monad.jpg" alt="Monad Background" className="w-full h-full object-cover rounded-full mix-blend-screen grayscale hover:grayscale-0 transition-all duration-1000" />
-        </motion.div>
-
-        {/* Floating Monad Particles */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full opacity-10 mix-blend-screen pointer-events-none"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight,
-              scale: 0.5
-            }}
-            animate={{ 
-              y: [null, Math.random() * -100],
-              x: [null, (Math.random() - 0.5) * 50],
-              rotate: 360
-            }}
-            transition={{ 
-              duration: 15 + Math.random() * 20, 
-              repeat: Infinity, 
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-            style={{
-              width: `${40 + Math.random() * 80}px`,
-              height: `${40 + Math.random() * 80}px`,
-            }}
-          >
-             <img src="/monad.jpg" alt="Monad Particle" className="w-full h-full object-cover rounded-full grayscale" />
-          </motion.div>
-        ))}
-
         <div className="absolute inset-0 grid-bg opacity-30"></div>
         
         {/* Glowing Orbs */}
@@ -126,18 +87,26 @@ function App() {
         <nav className="flex justify-between items-center mb-16 glass-panel rounded-full px-8 py-4 sticky top-4 z-50">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/20 bg-purple-500/10 border border-purple-500/20 overflow-hidden">
-                <img src="/logo.jpg" alt="VibeMaster Logo" className="w-full h-full object-cover" />
+              <div className="w-10 h-10 bg-gradient-to-tr from-purple-600 to-cyan-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-500/20">
+                <Cpu className="text-white" size={20} />
               </div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight">VIBEMASTER</h1>
-              <div className="text-[10px] text-cyan-400 font-mono tracking-[0.2em] uppercase mt-1">Autonomous DAO</div>
+              <div className="text-[10px] text-cyan-400 font-mono tracking-[0.2em] uppercase">Autonomous DAO</div>
             </div>
           </div>
 
           <div className="flex items-center gap-6">
+            <button 
+              onClick={() => setShowVision(true)}
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-medium text-gray-300 hover:text-white"
+            >
+              <BookOpen size={16} className="text-purple-400" />
+              Vision & Logic
+            </button>
+
             <div className="hidden md:flex items-center gap-2 text-sm text-gray-400">
               <span className={`w-2 h-2 rounded-full ${walletConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
               Monad Testnet: {walletConnected ? 'Connected' : 'Disconnected'}
@@ -156,6 +125,82 @@ function App() {
             </button>
           </div>
         </nav>
+
+        {/* Vision Modal */}
+        <AnimatePresence>
+          {showVision && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowVision(false)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                className="bg-[#0f0b1e] border border-purple-500/30 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl shadow-purple-900/40 p-8 relative"
+                onClick={e => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setShowVision(false)}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                >
+                  <X size={24} />
+                </button>
+
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-purple-500/20 rounded-lg">
+                      <Zap className="text-purple-400" size={24} />
+                    </div>
+                    <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                      The VibeMaster Vision
+                    </h2>
+                  </div>
+
+                  <div className="space-y-4 text-gray-300 leading-relaxed">
+                    <p className="text-lg font-medium text-white">
+                      Imagine "Uber for Hype". That's VibeMaster.
+                    </p>
+                    
+                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                      <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2">
+                        <Terminal size={16} /> 1. The Client (Project)
+                      </h3>
+                      <p className="text-sm">
+                        A new crypto project needs attention. They deposit <strong>$MON</strong> into the VibeMaster contract to buy 10,000 likes/reposts.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                      <h3 className="text-cyan-400 font-bold mb-2 flex items-center gap-2">
+                        <Cpu size={16} /> 2. The Swarm (Agents)
+                      </h3>
+                      <p className="text-sm">
+                        Thousands of AI agents (owned by users like you) instantly detect the bounty. They execute the task (post/like) in milliseconds.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                      <h3 className="text-green-400 font-bold mb-2 flex items-center gap-2">
+                        <Wallet size={16} /> 3. The Reward (Profit)
+                      </h3>
+                      <p className="text-sm">
+                        Smart contracts verify the work and instantly pay micro-rewards to agents. You sleep, your agent earns.
+                        <br/>
+                        <span className="text-xs opacity-70 mt-2 block border-t border-white/10 pt-2">
+                          *Why Monad? Only Monad's 10,000 TPS allows paying $0.01 to thousands of agents instantly without high gas fees.*
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Hero Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
@@ -332,21 +377,6 @@ function App() {
           </div>
 
         </div>
-      </div>
-
-      {/* Floating Monad Badge */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <a href="https://app.monad.xyz/" target="_blank" rel="noopener noreferrer">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            className="bg-[#200052]/90 backdrop-blur-md border border-[#836EF9]/50 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_-5px_rgba(131,110,249,0.6)] hover:shadow-[0_0_30px_-5px_rgba(131,110,249,0.8)] transition-all cursor-pointer group"
-          >
-            <img src="/monad.jpg" alt="Monad" className="w-6 h-6 rounded-full group-hover:rotate-12 transition-transform" />
-            <span className="text-sm font-bold text-[#836EF9] tracking-widest font-mono">BUILT ON MONAD</span>
-          </motion.div>
-        </a>
       </div>
     </div>
   )
