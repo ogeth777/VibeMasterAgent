@@ -397,6 +397,24 @@ function App() {
 
         </div>
       </div>
+
+      {/* Built on Monad Badge */}
+      <a 
+        href="https://app.monad.xyz/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#0f0b1e]/80 backdrop-blur-md border border-purple-500/30 px-5 py-3 rounded-2xl hover:bg-[#1a1629] transition-all hover:scale-105 group shadow-2xl shadow-purple-900/20"
+      >
+        <div className="flex flex-col items-end">
+           <span className="text-[10px] text-gray-400 font-mono tracking-widest uppercase group-hover:text-purple-300 transition-colors">Powered by</span>
+           <span className="text-lg font-bold text-white tracking-wide group-hover:text-purple-400 transition-colors">MONAD</span>
+        </div>
+        <div className="relative">
+          <div className="absolute inset-0 bg-purple-500 rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
+          <img src="/monad.jpg" alt="Monad" className="w-12 h-12 rounded-full border border-purple-500/20 relative z-10" />
+        </div>
+      </a>
+
     </div>
   )
 }
