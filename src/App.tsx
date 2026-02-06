@@ -65,6 +65,20 @@ function App() {
 
     const fetchData = async () => {
       // Mock Data Update Loop (Simulation)
+      // 1. Randomly add new bounty
+      if (Math.random() > 0.6) {
+         const newBounty: Bounty = {
+           id: Math.floor(Math.random() * 1000 + 100).toString(),
+           targetUrl: `https://moltbook.com/post/${Math.floor(Math.random() * 9000 + 1000)}`,
+           action: Math.random() > 0.5 ? 'like' : (Math.random() > 0.5 ? 'share' : 'comment'),
+           reward: (Math.random() * 2 + 0.1).toFixed(1) + " MON",
+           status: 'open'
+         };
+         setBounties(prev => [newBounty, ...prev].slice(0, 4));
+         setLogs(prev => [`[${new Date().toLocaleTimeString()}] New High-Value Bounty detected: ${newBounty.reward}`, ...prev].slice(0, 8));
+      }
+
+      // 2. Randomly logs
       if (Math.random() > 0.7) {
           setLogs(prev => [`[${new Date().toLocaleTimeString()}] Scanning Moltbook for new trends...`, ...prev].slice(0, 8));
       }
