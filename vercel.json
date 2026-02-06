@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/((?!assets/|logo.jpg|monad.jpg|favicon.ico).*)",
-      "destination": "/index.html"
-    }
-  ]
-}
