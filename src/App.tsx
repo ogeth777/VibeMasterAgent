@@ -70,11 +70,13 @@ function App() {
       // Mock Data Update Loop (Simulation)
       // 1. Randomly add new bounty
       if (Math.random() > 0.6) {
+         const isUsdc = Math.random() > 0.7;
+         const rewardValue = (Math.random() * 2 + 0.1).toFixed(1);
          const newBounty: Bounty = {
            id: Math.floor(Math.random() * 1000 + 100).toString(),
            targetUrl: `https://moltbook.com/post/${Math.floor(Math.random() * 9000 + 1000)}`,
            action: Math.random() > 0.5 ? 'like' : (Math.random() > 0.5 ? 'share' : 'comment'),
-           reward: (Math.random() * 2 + 0.1).toFixed(1) + " MON",
+           reward: isUsdc ? `$${rewardValue} USDC` : `${rewardValue} MON`,
            status: 'open'
          };
          setBounties(prev => [newBounty, ...prev].slice(0, 50));
@@ -86,6 +88,11 @@ function App() {
           setLogs(prev => [`[${new Date().toLocaleTimeString()}] Scanning Moltbook for new trends...`, ...prev].slice(0, 8));
       }
       
+      // 3. Circle CCTP Simulation
+      if (Math.random() > 0.85) {
+         setLogs(prev => [`[${new Date().toLocaleTimeString()}] Circle CCTP: Bridging USDC liquidity...`, ...prev].slice(0, 8));
+      }
+
       // Always add "Scanning" log occasionally
       if (Math.random() > 0.8) {
          setLogs(prev => [`[${new Date().toLocaleTimeString()}] Ping: Monad Testnet Node (14ms)`, ...prev].slice(0, 8));
@@ -267,6 +274,10 @@ function App() {
               <div className="text-gray-400 text-sm font-medium mb-2">Protocol Status</div>
               <div className="flex items-center gap-4">
                 <div className="text-2xl font-bold text-white">Autonomous Trading</div>
+                <div className="px-2 py-0.5 rounded bg-blue-500/20 border border-blue-500/30 text-[10px] text-blue-400 font-mono flex items-center gap-1">
+                   <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></div>
+                   CCTP
+                </div>
                 <div className="h-px flex-1 bg-gradient-to-r from-green-500/50 to-transparent"></div>
                 <div className="text-green-400 text-sm font-mono flex items-center gap-2">
                    <span className="relative flex h-3 w-3">
