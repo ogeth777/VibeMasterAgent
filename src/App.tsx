@@ -132,20 +132,7 @@ function App() {
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-bold tracking-tight">VIBEMASTER</h1>
-                <a href="https://app.monad.xyz/" target="_blank" rel="noopener noreferrer">
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-[#200052] border border-[#836EF9]/50 px-3 py-0.5 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_-3px_rgba(131,110,249,0.5)] hover:shadow-[0_0_20px_-1px_rgba(131,110,249,0.8)] transition-shadow cursor-pointer"
-                  >
-                    <img src="/monad.jpg" alt="Monad" className="w-3 h-3 rounded-full" />
-                    <span className="text-[10px] font-bold text-[#836EF9] tracking-wider font-mono">BUILT ON MONAD</span>
-                  </motion.div>
-                </a>
-              </div>
+              <h1 className="text-xl font-bold tracking-tight">VIBEMASTER</h1>
               <div className="text-[10px] text-cyan-400 font-mono tracking-[0.2em] uppercase mt-1">Autonomous DAO</div>
             </div>
           </div>
@@ -345,6 +332,21 @@ function App() {
           </div>
 
         </div>
+      </div>
+
+      {/* Floating Monad Badge */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <a href="https://app.monad.xyz/" target="_blank" rel="noopener noreferrer">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05, y: -2 }}
+            className="bg-[#200052]/90 backdrop-blur-md border border-[#836EF9]/50 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_-5px_rgba(131,110,249,0.6)] hover:shadow-[0_0_30px_-5px_rgba(131,110,249,0.8)] transition-all cursor-pointer group"
+          >
+            <img src="/monad.jpg" alt="Monad" className="w-6 h-6 rounded-full group-hover:rotate-12 transition-transform" />
+            <span className="text-sm font-bold text-[#836EF9] tracking-widest font-mono">BUILT ON MONAD</span>
+          </motion.div>
+        </a>
       </div>
     </div>
   )
