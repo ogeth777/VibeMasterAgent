@@ -70,8 +70,48 @@ function App() {
     <div className="min-h-screen relative overflow-hidden selection:bg-purple-500/30">
       
       {/* Dynamic Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[#030014]"></div>
+        
+        {/* Monad Logo Background Animation */}
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] opacity-[0.05] pointer-events-none"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+        >
+             <img src="/monad.jpg" alt="Monad Background" className="w-full h-full object-cover rounded-full mix-blend-screen grayscale hover:grayscale-0 transition-all duration-1000" />
+        </motion.div>
+
+        {/* Floating Monad Particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full opacity-10 mix-blend-screen pointer-events-none"
+            initial={{ 
+              x: Math.random() * window.innerWidth, 
+              y: Math.random() * window.innerHeight,
+              scale: 0.5
+            }}
+            animate={{ 
+              y: [null, Math.random() * -100],
+              x: [null, (Math.random() - 0.5) * 50],
+              rotate: 360
+            }}
+            transition={{ 
+              duration: 15 + Math.random() * 20, 
+              repeat: Infinity, 
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+            style={{
+              width: `${40 + Math.random() * 80}px`,
+              height: `${40 + Math.random() * 80}px`,
+            }}
+          >
+             <img src="/monad.jpg" alt="Monad Particle" className="w-full h-full object-cover rounded-full grayscale" />
+          </motion.div>
+        ))}
+
         <div className="absolute inset-0 grid-bg opacity-30"></div>
         
         {/* Glowing Orbs */}
