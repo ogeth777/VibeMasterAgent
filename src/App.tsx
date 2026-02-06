@@ -87,7 +87,7 @@ function App() {
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/20 bg-purple-500/10 border border-purple-500/20 overflow-hidden">
-                <img src="/logo.png" alt="VibeMaster Logo" className="w-full h-full object-cover" />
+                <img src="/logo.jpg" alt="VibeMaster Logo" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-[#030014]"></div>
             </div>

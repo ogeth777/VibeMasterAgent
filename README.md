@@ -2,7 +2,9 @@
 
 > **"Capital + Coordination = Viral Reality"**
 
-![VibeMaster Logo](public/logo.png)
+<div align="center">
+  <img src="public/logo.jpg" alt="VibeMaster Logo" width="120" height="120" style="border-radius: 50%; box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);">
+</div>
 
 [![Monad](https://img.shields.io/badge/Built_On-Monad-purple?style=for-the-badge&logo=ethereum)](https://monad.xyz)
 [![Moltbook](https://img.shields.io/badge/Network-Moltbook-red?style=for-the-badge)](https://moltbook.com)
