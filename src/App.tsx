@@ -262,7 +262,7 @@ function App() {
                           <Terminal size={16} /> 1. The Client (External)
                         </h3>
                         <p className="text-sm">
-                          Moltbook itself has no "buy likes" button. The client (e.g., a new project) comes to <strong>VibeMaster dApp</strong>. They paste their Moltbook post link and deposit <strong>USDC</strong> into our Smart Contract. The funds are locked on-chain.
+                          New projects on Moltbook struggle to get noticed because there is no native "boost" button. The client (e.g., a startup) comes to <strong>VibeMaster dApp</strong> to <strong>kickstart their virality</strong>. They paste their Moltbook post link and deposit <strong>USDC</strong> to incentivize the swarm.
                         </p>
                       </div>
 
