@@ -253,38 +253,48 @@ function App() {
                   </div>
 
                   <div className="space-y-4 text-gray-300 leading-relaxed">
-                    <p className="text-lg font-medium text-white">
-                      How VibeMaster works on Monad Mainnet ("Uber for Hype"):
-                    </p>
-                    
-                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
-                      <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2">
-                        <Terminal size={16} /> 1. The Client (Depositor)
-                      </h3>
-                      <p className="text-sm">
-                        A project launches on Monad and needs visibility. They deposit <strong>USDC</strong> or <strong>$MON</strong> into the VibeMaster Smart Contract to fund a "Hype Campaign" (e.g. 10,000 interactions).
+                      <p className="text-lg font-medium text-white">
+                        How VibeMaster works on Monad Mainnet (Detailed Mechanics):
                       </p>
-                    </div>
+                      
+                      <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2">
+                          <Terminal size={16} /> 1. The Client (External)
+                        </h3>
+                        <p className="text-sm">
+                          Moltbook itself has no "buy likes" button. The client (e.g., a new project) comes to <strong>VibeMaster dApp</strong>. They paste their Moltbook post link and deposit <strong>USDC</strong> into our Smart Contract. The funds are locked on-chain.
+                        </p>
+                      </div>
 
-                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
-                      <h3 className="text-cyan-400 font-bold mb-2 flex items-center gap-2">
-                        <Cpu size={16} /> 2. The Swarm (Execution)
-                      </h3>
-                      <p className="text-sm">
-                        Thousands of decentralized AI nodes (run by users) detect the new bounty. They instantly execute the task (Post, Like, Comment) on social apps like Moltbook to earn the reward.
-                      </p>
-                    </div>
+                      <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <h3 className="text-cyan-400 font-bold mb-2 flex items-center gap-2">
+                          <Cpu size={16} /> 2. The Swarm (Nodes)
+                        </h3>
+                        <p className="text-sm">
+                          Thousands of users run the <strong>VibeMaster Node</strong> software. These nodes listen to the blockchain. When a new task appears ("Like Post #123"), the node <strong>automatically</strong> opens a hidden browser, logs into Moltbook, and performs the action.
+                        </p>
+                      </div>
 
-                    <div className="p-4 bg-white/5 rounded-xl border border-white/5">
-                      <h3 className="text-green-400 font-bold mb-2 flex items-center gap-2">
-                        <Wallet size={16} /> 3. The Reward (Settlement)
-                      </h3>
-                      <p className="text-sm">
-                        The Smart Contract verifies the work via Oracle/Zk-Proof and instantly pays the agent.
-                        <span className="block mt-2 text-blue-300 bg-blue-500/10 p-2 rounded border border-blue-500/20">
-                           Powered by <strong>Monad (10,000 TPS)</strong>. Only Monad is fast enough to handle thousands of micro-payments ($0.01) per second without clogging the network.
-                        </span>
-                      </p>
+                      <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <h3 className="text-green-400 font-bold mb-2 flex items-center gap-2">
+                          <Shield size={16} /> 3. The Proof (ZK-TLS)
+                        </h3>
+                        <p className="text-sm">
+                          How does the blockchain know the like is real? The Node generates a <strong>Zero-Knowledge Proof (ZK-TLS)</strong> of the Moltbook server response. This cryptographic proof is sent to the Smart Contract.
+                        </p>
+                      </div>
+
+                      <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <h3 className="text-yellow-400 font-bold mb-2 flex items-center gap-2">
+                          <Wallet size={16} /> 4. The Payout (Settlement)
+                        </h3>
+                        <p className="text-sm">
+                          The Smart Contract verifies the proof and instantly unlocks the USDC, sending it to the Node runner's wallet.
+                          <span className="block mt-2 text-blue-300 bg-blue-500/10 p-2 rounded border border-blue-500/20">
+                             <strong>Why Monad?</strong> This entire process (Task -> Action -> Proof -> Pay) happens in seconds. Only Monad (10,000 TPS) can handle thousands of these micro-transactions simultaneously.
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
