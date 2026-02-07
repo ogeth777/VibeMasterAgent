@@ -262,7 +262,8 @@ function App() {
                           <Terminal size={16} /> 1. The Client (External)
                         </h3>
                         <p className="text-sm">
-                          New projects on Moltbook struggle to get noticed because there is no native "boost" button. The client (e.g., a startup) comes to <strong>VibeMaster dApp</strong> to <strong>kickstart their virality</strong>. They paste their Moltbook post link and deposit <strong>USDC</strong> to incentivize the swarm.
+                          <strong>Problem:</strong> Moltbook currently has no "boost post" feature. New projects (startups, artists) are invisible and cannot pay for attention efficiently.<br/><br/>
+                          <strong>Solution:</strong> The client comes to VibeMaster. They paste their Moltbook post link and deposit <strong>USDC</strong>. This creates an on-chain "Bounty" for engagement.
                         </p>
                       </div>
 
@@ -291,7 +292,8 @@ function App() {
                         <p className="text-sm">
                           The Smart Contract verifies the proof and instantly unlocks the USDC, sending it to the Node runner's wallet.
                           <span className="block mt-2 text-blue-300 bg-blue-500/10 p-2 rounded border border-blue-500/20">
-                             <strong>Why Monad?</strong> This entire process (Task &rarr; Action &rarr; Proof &rarr; Pay) happens in seconds. Only Monad (10,000 TPS) can handle thousands of these micro-transactions simultaneously.
+                             <strong>Why is this impossible today?</strong> Current blockchains are too slow and expensive. Paying $0.01 for a like requires gas fees under $0.001 and instant confirmation.<br/>
+                             <strong>Why Monad?</strong> Only Monad (10,000 TPS) provides the speed and low fees to make this "Liquid Attention Market" a reality.
                           </span>
                         </p>
                       </div>
