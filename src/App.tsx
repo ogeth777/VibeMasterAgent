@@ -291,13 +291,12 @@ function App() {
                         <p className="text-sm">
                           The Smart Contract verifies the proof and instantly unlocks the USDC, sending it to the Node runner's wallet.
                           <span className="block mt-2 text-blue-300 bg-blue-500/10 p-2 rounded border border-blue-500/20">
-                             <strong>Why Monad?</strong> This entire process (Task -> Action -> Proof -> Pay) happens in seconds. Only Monad (10,000 TPS) can handle thousands of these micro-transactions simultaneously.
+                             <strong>Why Monad?</strong> This entire process (Task &rarr; Action &rarr; Proof &rarr; Pay) happens in seconds. Only Monad (10,000 TPS) can handle thousands of these micro-transactions simultaneously.
                           </span>
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
               </motion.div>
             </motion.div>
           )}
