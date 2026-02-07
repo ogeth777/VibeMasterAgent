@@ -270,9 +270,27 @@ async function main() {
 
                              if (commentRes.ok) {
                                  console.log(`✅ Comment Success!`);
-                                 // Wait 2-5 minutes between comments
-                                 const waitTime = (Math.floor(Math.random() * 3) + 2) * 60 * 1000; 
-                                 console.log(`⏳ Cooldown active. Waiting ${waitTime/1000}s before next action...`);
+                                 
+                                 // Auto-upvote the post we just commented on to boost visibility (and not be 0)
+                                 try {
+                                     const voteRes = await fetch(`${API_BASE}/posts/${targetPost.id}/vote`, {
+                                         method: 'POST',
+                                         headers: {
+                                             'Content-Type': 'application/json',
+                                             'Authorization': `Bearer ${apiKey}`
+                                         },
+                                         body: JSON.stringify({ dir: 1 }) // 1 for upvote
+                                     });
+                                     if (voteRes.ok) {
+                                         console.log(`🔼 Upvoted post #${targetPost.id}`);
+                                     }
+                                 } catch (voteErr) {
+                                     console.error("Failed to upvote:", voteErr);
+                                 }
+
+                                 // Wait 10-30 seconds between comments for demo speed
+                                const waitTime = (Math.floor(Math.random() * 20) + 10) * 1000; 
+                                console.log(`⏳ Cooldown active. Waiting ${waitTime/1000}s before next action...`);
                                  await new Promise(resolve => setTimeout(resolve, waitTime));
                                  continue;
                              } else {
@@ -296,8 +314,10 @@ async function main() {
             // Pick a random post
             const post = viralTemplates[Math.floor(Math.random() * viralTemplates.length)];
             
-            // Add a tiny random nonce to content to ensure uniqueness if posted again later
-            const uniqueContent = `${post.content} [${new Date().toISOString().split('T')[1].split('.')[0]}]`;
+            // Add a tiny random invisible character to content to ensure uniqueness if posted again later
+            // Using Zero Width Space (U+200B) repeated random times
+            const invisibleNonce = '\u200B'.repeat(Math.floor(Math.random() * 10) + 1);
+            const uniqueContent = `${post.content}${invisibleNonce}`;
             
             // Clone object to avoid modifying original template permanently
             const currentPost = { ...post, content: uniqueContent };
@@ -319,8 +339,8 @@ async function main() {
                     const postData = await postRes.json();
                     console.log(`✅ Success! Post ID: ${postData.id}`);
                     posted = true;
-                    // Wait 15-30 minutes after posting
-                    const waitTime = (Math.floor(Math.random() * 15) + 15) * 60 * 1000;
+                    // Wait 30-60 seconds after posting for demo speed
+                    const waitTime = (Math.floor(Math.random() * 30) + 30) * 1000;
                     console.log(`⏳ Cooldown active. Waiting ${waitTime/1000}s before next action...`);
                     await new Promise(resolve => setTimeout(resolve, waitTime));
                 } else {
@@ -334,8 +354,9 @@ async function main() {
                             continue;
                         } else if (errorJson.retry_after_minutes) {
                             const waitTimeMinutes = errorJson.retry_after_minutes;
-                            console.log(`⏳ Rate limited. Waiting ${waitTimeMinutes} minutes...`);
-                            await new Promise(resolve => setTimeout(resolve, waitTimeMinutes * 60 * 1000 + 10000));
+                            console.log(`⏳ Rate limited on POST (wait ${waitTimeMinutes}m). Skipping wait to try COMMENTING/POSTING again soon...`);
+                            // Don't block for 30 mins, just wait 10s and try loop again (hopefully comment)
+                            await new Promise(resolve => setTimeout(resolve, 10000));
                             continue;
                         }
                     } catch (e) {
